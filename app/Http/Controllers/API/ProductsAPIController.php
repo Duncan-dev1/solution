@@ -12,7 +12,7 @@ class ProductsAPIController extends Controller
 {
     public function index()
     {
-        return new ProductsCollection(Products::paginate());
+        return new ProductsCollection(Products::orderBy('created_at','desc')->paginate(5));
     }
  
     public function show(Products $products)

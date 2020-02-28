@@ -12,7 +12,7 @@ class OrdersAPIController extends Controller
 {
     public function index()
     {
-        return new OrdersCollection(Orders::paginate());
+        return new OrdersCollection(Orders::paginate(5));
     }
  
     public function show(Orders $orders)
@@ -34,8 +34,8 @@ class OrdersAPIController extends Controller
 
     public function destroy(Request $request, Orders $orders)
     {
-        $orders->delete();
-
-        return response()->noContent();
+        $order=Order::findOrFail($id);
+        $order->delete();
+        //return response()->noContent();
     }
 }
